@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HBD Marsya Terpaling Sayang</title>
+    <!-- Google Fonts yang lebih premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Catchy+Mela&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #ffeef2 0%, #fff5f6 50%, #e8f0fe 100%);
+            --accent-pink: #ff6584;
+            --accent-soft: #ff8da1;
+            --text-dark: #2d2325;
+            --text-muted: #756669;
+            --card-glass: rgba(255, 255, 255, 0.75);
+            --border-glass: rgba(255, 255, 255, 0.6);
+            --shadow-premium: 0 20px 40px rgba(255, 101, 132, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Ambient Orbs Background */
+        .orb {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -2;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .orb-1 { top: -100px; right: -50px; background: #ffe3e8; }
+        .orb-2 { bottom: 10% ; left: -100px; background: #e3edff; }
+
+        #container-hati {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .avatar-container {
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .avatar-outline {
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 2px dashed var(--accent-soft);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+        .main-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 15px 35px rgba(255, 101, 132, 0.15);
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge-hbd {
+            background: linear-gradient(45deg, var(--accent-pink), var(--accent-soft));
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 20px rgba(255, 101, 132, 0.25);
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .sub-hero {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-pink);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scroll-indicator span {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-6px); }
+            60% { transform: translateY(-3px); }
+        }
+
+        /* --- GALLERY SECTION --- */
+        .gallery-section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            padding-left: 24px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--text-dark);
+            position: relative;
+        }
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%; transform: translateY(-50%);
+            width: 12px; height: 3px;
+            background: var(--accent-pink);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .carousel-outer {
+            overflow: hidden;
+            padding: 10px 0 30px 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: calc(170px * 10); /* Sesuaikan dengan jumlah item */
+            animation: continuousScroll 25s linear infinite;
+        }
+
+        @keyframes continuousScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Polaroid Style Photo Item */
+        .photo-item {
+            width: 150px;
+            background: white;
+            padding: 10px 10px 20px 10px;
+            margin: 0 10px;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transform: rotate(var(--rotation));
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item img {
+            width: 130px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        /* --- LETTER SECTION --- */
+        .letter-section {
+            padding: 20px 24px 60px 24px;
+        }
+
+        .letter-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border-glass);
+            border-radius: 30px;
+            padding: 30px 24px;
+            box-shadow: var(--shadow-premium);
+            text-align: center;
+        }
+
+        .btn-trigger {
+            width: 100%;
+            background: linear-gradient(135deg, var(--text-dark) 0%, #453538 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(45, 35, 37, 0.15);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-trigger:active {
+            transform: scale(0.98);
+        }
+
+        #hidden-message {
+            display: none;
+            text-align: left;
+            margin-top: 10px;
+            animation: fadeInLetter 1s cubic-bezier(0.21, 1.02, 0.43, 1.01) forwards;
+        }
+
+        @keyframes fadeInLetter {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .letter-content {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .letter-content p {
+            margin-bottom: 20px;
+        }
+
+        .highlight-name {
+            background: linear-gradient(120deg, rgba(255,101,132,0.15) 0%, rgba(255,101,132,0.05) 100%);
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: var(--accent-pink);
+            font-weight: 700;
+        }
+
+        .romantic-closing {
+            text-align: center;
+            margin-top: 40px !important;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--accent-pink);
+        }
+
+        footer {
+            text-align: center;
+            padding-bottom: 40px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Decorative Floating Elements */
+        .heart-particle {
+            position: absolute;
+            pointer-events: none;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; transform: translateY(-10vh) scale(1) rotate(45deg); }
+            100% { transform: translateY(-110vh) scale(0.7) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient background colors -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div id="container-hati"></div>
+
+    <!-- MAIN HERO -->
+    <section class="hero">
+        <div class="badge-hbd">Spesial Hari Ini ✨</div>
+        <div class="avatar-container">
+            <div class="avatar-outline"></div>
+            <img src="uby1.jpeg" class="main-img" alt="Marsya">
+        </div>
+        <h1>Happy Birthday,<br>Marsya.</h1>
+        <p class="sub-hero">Untuk perempuan kesayangan mas</p>
+        
+        <div class="scroll-indicator">
+            <p>Intip kenangan kita</p>
+            <span>❤️</span>
+        </div>
+    </section>
+
+    <!-- MEMORIES CAROUSEL (POLAROID) -->
+    <section class="gallery-section">
+        <p class="section-title">Memories of Us</p>
+        <div class="carousel-outer">
+            <div class="carousel-track">
+                <!-- Foto 1-5 dengan rotasi estetik acak -->
+                <div class="photo-item" style="--rotation: -3deg;"><img src="Uby2.jpeg" alt="Moments"></div>
+                <div class="photo-item" style="--rotation: 4deg;"><img src="uby3.jpeg" alt="Moments"></div>
+                <div class="photo-item" style="--rotation: -2deg;"><img src="Uby4.png" alt="Moments"></div>
+                <div class="photo-item" style="--rotation: 3deg;"><img src="uby5.png" alt="Moments"></div>
+                <div class="photo-item" style="--rotation: -4deg;"><img src="fotbar.jpeg" alt="Moments"></div>
+                
+                <!-- Duplikat Foto untuk Efek Loop Seamless -->
+                <div class="photo-item" style="--rotation: -3deg;"><img src="Uby2.jpeg" alt="Moments"></div>
+                <div class="photo-item" style="--rotation: 4deg;"><img src="uby3.jpeg" alt="Moments"></div>
+                <div class="photo-item" style="--rotation: -2deg;"><img src="Uby4.png" alt="Moments"></div>
+                <div class="photo-item" style="--rotation: 3deg;"><img src="uby5.png" alt="Moments"></div>
+                <div class="photo-item" style="--rotation: -4deg;"><img src="fotbar.jpeg" alt="Moments"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LETTER CARD -->
+    <section class="letter-section">
+        <div class="letter-card">
+            <button class="btn-trigger" id="btn-open" onclick="openLetter()">
+                Buka Surat Spesial 💌
+            </button>
+            
+            <div id="hidden-message">
+                <div class="letter-content">
+                    <p>Hai Sayang,</p>
+                    <p>Makasih ya udah nemenin aku sampai sejauh ini. Hari ini adalah hari yang sangat berharga buat kamu, hari dimana seorang anak yang sangat baik ini dilahirkan.</p>
+                    <p>Hari ini kamu sudah bertambah 1 tahun, sudah makin dewasa. Aku cuma berharap kehidupan kamu lebih bahagia, lebih indah, lebih ceria, dan harapan paling dalam aku adalah semoga kamu selalu ada di sisi aku hingga kita tua nanti.</p>
+                    <p>Bukan hanya ada di sisi, aku ingin kamu yang mendampingi aku hingga aku tua nanti, menjadi istri dan ibu dari anak-anak aku.</p>
+                    <p>Di atas adalah sedikit dari banyaknya momen yang telah kita lalui, dan aku harap momen itu akan terus bertambah seiring berjalannya waktu. Bareng aku terus ya, <span class="highlight-name">Marsya Az-zuhri Setya Wulandari</span>.</p>
+                    
+                    <p class="romantic-closing">
+                        Jangan pernah bosen ya sama aku.<br>
+                        Atapu Anata! ❤️
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>Made with ♡ for Marsya</footer>
+
+    <script>
+        function openLetter() {
+            const message = document.getElementById("hidden-message");
+            const button = document.getElementById("btn-open");
+            
+            // Efek transisi halus menghilangkan tombol
+            button.style.opacity = "0";
+            setTimeout(() => {
+                button.style.display = "none";
+                message.style.display = "block";
+                
+                // Menggulung layar otomatis dengan posisi yang presisi
+                setTimeout(() => {
+                    message.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }, 300);
+        }
+
+        // Generate kelopak/hati berjatuhan yang lebih variatif dan estetik
+        function spawnHeart() {
+            const container = document.getElementById('container-hati');
+            const heart = document.createElement('div');
+            
+            // Mengacak bentuk kelopak agar bervariasi
+            const symbols = ['❤️', '🌸', '✨', '💖'];
+            const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            heart.classList.add('heart-particle');
+            heart.innerHTML = randomSymbol;
+            
+            // Posisi acak
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '105vh'; // Mulai dari bawah ke atas agar mengalir cantik
+            
+            // Ukuran dan durasi animasi acak
+            const size = Math.random() * 12 + 12; // 12px - 24px
+            heart.style.fontSize = size + 'px';
+            heart.style.animationDuration = Math.random() * 4 + 4 + 's'; // 4s - 8s
+            
+            container.appendChild(heart);
+            
+            // Hapus element setelah selesai animasi
+            setTimeout(() => { heart.remove(); }, 8000);
+        }
+
+        // Interval pembuatan partikel agar tidak membebani performa HP (Mobile-friendly)
+        setInterval(spawnHeart, 700);
+    </script>
+</body>
+</html>
